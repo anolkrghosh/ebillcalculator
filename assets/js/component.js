@@ -31,6 +31,7 @@ function addList(item) {
 </div>`;
     list.append(i);
 }
+
 function input_list(v = true) {
     let inp = $('#init');
 
@@ -79,9 +80,12 @@ function input_list(v = true) {
         </div>
     </div>`;
 
-    if (v) inp.fadeOut("fast"), setTimeout(()=>{inp.empty(), inp.append(i), inp.fadeIn("fast")},200);
-    else inp.fadeOut("fast"),inp.hide();
+    if (v) inp.fadeOut("fast"), setTimeout(() => {
+        inp.empty(), inp.append(i), inp.fadeIn("fast")
+    }, 200);
+    else inp.fadeOut("fast"), inp.hide();
 }
+
 function input_unit(v = true) {
     let inp = $('#init');
 
@@ -129,9 +133,12 @@ function input_unit(v = true) {
         </div>
     </div>`;
 
-    if (v)  inp.fadeOut("fast"), setTimeout(()=>{ inp.empty(), inp.append(i), inp.fadeIn("fast")},200);
+    if (v) inp.fadeOut("fast"), setTimeout(() => {
+        inp.empty(), inp.append(i), inp.fadeIn("fast")
+    }, 200);
     else inp.hide(), inp.empty();
 }
+
 function input_slab(v = true) {
     let inp = $('#init');
 
@@ -191,7 +198,9 @@ function input_slab(v = true) {
         </div>
     </div>`;
 
-    if (v) inp.fadeOut("fast"), setTimeout(()=>{ inp.empty(), inp.append(i), inp.fadeIn("fast") },300);
+    if (v) inp.fadeOut("fast"), setTimeout(() => {
+        inp.empty(), inp.append(i), inp.fadeIn("fast")
+    }, 300);
     else inp.hide(), inp.empty();
 }
 
@@ -239,11 +248,13 @@ function Show_List(i = true) {
     if (i) row_header.show(), row.show(), row_result.show();
     else row_header.hide(), row.hide(), row_result.hide();
 }
+
 function Show_Cost_Card(i = true) {
     let card = $("#cost_result");
     if (i) card.show();
     else card.hide();
 }
+
 function Cost_Card(data) {
     let card = $("#cost_result > div > .card").eq(0);
     let i2 = `<div class="card-body">
@@ -276,4 +287,13 @@ function Cost_Card(data) {
 
 
 
-export { addList, input_list, input_unit, input_slab, Show_List, Show_Cost_Card, Cost_Card , Init  }
+export {
+    addList,
+    input_list,
+    input_unit,
+    input_slab,
+    Show_List,
+    Show_Cost_Card,
+    Cost_Card,
+    Init
+}
