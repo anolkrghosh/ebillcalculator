@@ -1,0 +1,190 @@
+<html lang="en">
+
+<head>
+    <meta name="description" content="wbsedcl electric bill estimation and breakdown calculator">
+    <meta name="keywords" content="wbsedcl,bill,electric,ebill,calculator,online,electrical">
+    <meta name="author" content="Anol KR Ghosh">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electric Bill Calculator</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="main.css">
+    <style>
+        ::-webkit-scrollbar { display: none; }
+
+        #main-wrapper[data-layout="horizontal"][data-sidebar-position="fixed"] .page-wrapper{ 
+            padding-top: 5px !important;
+        }
+        .offset-half{
+            margin-left: 4.166665%; 
+        }
+        .col-tenbysix{
+            flex: 0 0 13.8888883333%;
+            max-width: 13.8888883333%;
+            
+        }
+
+    </style>
+</head>
+
+<body data-theme="light">
+    <div id="main-wrapper" data-layout="horizontal" data-navbarbg="skin1" data-sidebartype="full"
+        data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="boxed" class="">
+        <div class="page-wrapper" style="display: block;">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col col-lg-12 col-md-12 col-xs-12">
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <h4 class="card-title" onclick="setTimeout(()=>{ init(true)},300 ) " style="cursor: pointer;">ELECTRIC BILL ESTIMATION AND BREAKDOWN<div class="small">(WBSEDCL)</div></h4>
+                                <p class="card-text"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="init" style="display: none;">
+                    
+                </div>
+                <div class="row" id="list_header" style="display: none;">
+                    <div class="col col-lg col-md col-xs">
+                        <div class="card mb-2">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col col-lg-4 col-md-4 col-xs-4">
+                                        <p class="card-text">Name</p>
+                                    </div>
+                                    <div class="col col-lg-2 col-md-2 col-xs-2">
+                                        <p class="card-text">Load(Watt)</p>
+                                    </div>
+                                    <div class="col col-lg-2 col-md-2 col-xs-2">
+                                        <p class="card-text">Hours</p>
+                                    </div>
+                                    <div class="col col-lg-2 col-md-2 col-xs-2">
+                                        <p class="card-text">KWH</p>
+                                    </div>
+                                    <div class="col col-lg-2 col-md-2 col-xs-2">
+                                        <p class="card-text text-right">Action</p>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="list" style="display: none;">
+                    <!-- <div class="row">
+                        <div class="col-lg">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-2 d-flex align-items-center my-2">
+                                            <p class="card-text px-2">Laptop</p>
+                                        </div>
+                                        <div class="col-1 d-flex align-items-center my-2">
+                                            <p class="card-text px-2">80</p>
+                                        </div>
+                                        <div class="col-1 d-flex align-items-center my-2">
+                                            <p class="card-text px-2">1</p>
+                                        </div>
+                                        <div class="col-2 d-flex align-items-center my-2">
+                                            <p class="card-text px-2">80</p>
+                                        </div>
+                                        <div class="col-2 d-flex align-items-center my-2">
+                                            <p class="card-text px-2">20</p>
+                                        </div>
+                                        <div class="col-3 d-flex align-items-center my-2 text-right">
+                                            <p class="card-text px-2">2</p>
+                                        </div>
+                                        <div class="col-1 d-flex align-items-center my-2">
+                                            <button type="button" onclick="remove_from_list('id')" class="btn float-right btn-warning btn-circle"><i class="fa fa-times"></i>
+                                            </button>
+                                        </div>
+    
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+
+                </div>
+                <div class="row" style="display: none;" id="list_result">
+                    <div class="col-lg">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col col-lg-6 col-md-6 col-xs-6">
+                                        <p class="card-text px-2 tl">Total Load : </p>
+                                    </div>
+                                    <div class="col col-lg-6 col-md-6 col-xs-6">
+                                        <p class="card-text px-2 text-right tc">Total Consumption : </p>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="cost_result" style="display: none;">
+                    <div class="col-md-4 offset-md-8">
+
+                        <div class="card mb-1">
+                            <div class="card-body py-2">
+                                <div class="float-left">
+                                    <p class="text-balck mb-0">Approximate Cost</p>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="card mb-1">
+                            <!-- <div class="card-body">
+                                <div class="float-left">
+                                    <h6 class="font-weight-medium mb-0 text-balck">Dash</h6>
+                                </div>
+                                <div class="float-right">
+                                    <h6 class="font-weight-medium mb-0 text-black">Dash</h6>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="float-left">
+                                    <h6 class="font-weight-medium mb-0 text-balck">Dash</h6>
+                                </div>
+                                <div class="float-right">
+                                    <h6 class="font-weight-medium mb-0 text-black">Dash</h6>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="float-left">
+                                    <h6 class="font-weight-medium mb-0 text-balck">Dash</h6>
+                                </div>
+                                <div class="float-right">
+                                    <h6 class="font-weight-medium mb-0 text-black">Dash</h6>
+                                </div>
+                            </div> -->
+                        </div>
+                        <div class="card">
+                            <div class="card-body py-2">
+                                <div class="float-left">
+                                    <p class="text-balck mb-0">Price Slab</p>
+
+                                    <small>*Fixed Charges Excluded</small>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <footer class="footer">
+               © 2021, Anol Kr Ghosh
+            </footer>
+        </div>
+    </div>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="module" src="main.js"></script>
+
+</body>
+
+</html>
