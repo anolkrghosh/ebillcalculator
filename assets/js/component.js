@@ -140,6 +140,7 @@ function input_unit(v = true) {
 }
 
 function input_slab(v = true) {
+    list_data = new Array();
     let inp = $('#init');
 
     let i = `<div class="col-lg col-md col-xs">
