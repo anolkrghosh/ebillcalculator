@@ -206,7 +206,8 @@ function input_slab(v = true) {
 
 function Init(v = true) {
     let init = $('#init');
-
+    Show_Cost_Card(false);
+    Show_List(false);
     let i = `<div class="col col-lg-12 col-md-12 col-xs-12">
                         <div class="card-group">
                             <!-- Column -->
