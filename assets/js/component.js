@@ -140,7 +140,7 @@ function input_unit(v = true) {
 }
 
 function input_slab(v = true) {
-    list_data = new Array();
+    
     let inp = $('#init');
 
     let i = `<div class="col-lg col-md col-xs">
@@ -206,6 +206,7 @@ function input_slab(v = true) {
 }
 
 function Init(v = true) {
+    list_data = new Array();
     let init = $('#init');
     Show_Cost_Card(false);
     Show_List(false);
