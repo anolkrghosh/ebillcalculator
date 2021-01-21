@@ -247,13 +247,14 @@ function Show_List(i = true) {
     let row_result = $('#list_result');
     let row_header = $('#list_header');
     if (i) row_header.show(), row.show(), row_result.show();
-    else row_header.hide(), row.hide(), row_result.hide();
+    else row_header.hide(), row.empty(), row_result.hide();
 }
 
 function Show_Cost_Card(i = true) {
     let card = $("#cost_result");
+    let c2 = $("#cost_result > div > .card").eq(0);
     if (i) card.show();
-    else card.hide();
+    else c2.empty(), card.hide();
 }
 
 function Cost_Card(data) {
