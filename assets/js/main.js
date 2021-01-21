@@ -44,7 +44,7 @@ window.init_breakdown = function () {
     setTimeout(() => {
         //input_slab();
         //process_breakdown();
-        swal("Under Constraction", {
+        swal("Under construction", { 
             buttons: false,
             timer: 1500,
         });
