@@ -36,7 +36,7 @@ function input_list(v = true) {
     let inp = $('#init');
 
     let i = `<div class="col-lg col-md col-xs">
-    <div class="card">
+    <div class="card"  id="inputs">
         <div class="card-body">
             <div class="row">
                 <div class="col-md-3">
