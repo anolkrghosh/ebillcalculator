@@ -52,41 +52,26 @@ window.init_breakdown = function () {
 }
 
 window.append_to_list = function () {
-    let name, watt, qty, hr;
-    name = $('#name').val();
-    watt = $('#watt').val();
-    qty = $('#qty').val();
-    hr = $('#hours').val();
-    if (validation.isNotEmpty(name) && validation.isNotEmpty(watt) && validation.isNotEmpty(qty) && validation.isNotEmpty(hr)) {
-        if (validation.isNumber(watt) && validation.isNumber(qty) && validation.isNumber(hr)) {
-            let temp = Array();
-            temp._id = Math.random().toString(36).substr(2, 9); // Math.floor(Math.random() * 100000000);//
-            temp.name = name
-            temp.watt = watt
-            temp.qty = qty
-            temp.load = Math.round(watt * qty);
-            temp.hours = hr
-            temp.req_energy = (watt * qty * hr) / 1000; //Math.round((watt * qty * hr) / 1000);
-            list_data.push(temp);
-            addList(temp);
-            Show_List();
-            Cal();
-            // Reset Input Field
-            $('#name').val(null);
-            $('#watt').val(null);
-            $('#qty').val(null);
-            $('#hours').val(null);
-        } else {
-            let txt = "";
-            if (!validation.isNumber(watt)) txt += "Watt";
-            if (!validation.isNumber(qty)) txt += " / Quantity / ";
-            if (!validation.isNumber(hr)) txt += "hours";
-            swal(`Only Numbers are allowerd for ${txt}`, {
-                buttons: false,
-                timer: 1500,
-            });
+    let data = Array();
+    $('#inputs').find('input').each((e,v)=>{
+        if($(v).val()){
+            $(v).removeClass('is-invalid').addClass('is-valid');
+            data[v.id] =  v.value;
+        }else{
+            $(v).removeClass('is-valid').addClass('is-invalid'); 
         }
-    } else {
+    });
+    if(Object.keys(data).length == 4){
+        
+        data.load = Math.round(data.watt * data.qty);
+        data.req_energy = (data.watt * data.qty * data.hours) / 1000;
+        data._id = Math.random().toString(36).substr(2, 9);
+        list_data.push(data);
+        addList(data);
+        Show_List();
+        Cal();
+        $('#inputs').find('input').each((e,v)=>{$(v).val('').removeClass('is-valid')});
+    }else{
         swal("Empty Fields", {
             buttons: false,
             timer: 1500,
